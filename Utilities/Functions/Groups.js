@@ -58,17 +58,7 @@ function addGrpExpense(data, groupId, membersFrmDB) {
     );
 }
 
-// function GetGroupsById(id) {
-//   return client
-//     .db("Portfolio-First-Project")
-//     .collection("groups-channel")
-//     .find({
-//       _id: { $in: id },
-//     })
-//     .project({ _id: 0 })
-//     .toArray();
-// }
-
+// TO GROUP NAMES BY ID
 function GetGroupName(GroupId) {
   return client
     .db("Portfolio-First-Project")

@@ -12,9 +12,14 @@ const router = express.Router();
 router.route("/").post(async (req, res) => {
   const dataProvided = req.body;
 
+  // GETIING THE DATA FROM DB WITH THE USER PROVIDED DETAILS
   const nameFrmDB = await GetName(dataProvided.name);
   const emailFrmDB = await GetEmail(dataProvided.email);
 
+  /* 
+  TO THROW AN ERROR IF NAME AND EMAIL IS ALREADY PRESENT IN THE DATABASE AND IF EMAIL PATTERN AND
+    PASSWORD PATTERN DOESN'T MATCH THE REQUIREMENT
+ */
   if (nameFrmDB && emailFrmDB) {
     res.status(400).send({ message: "Name and E-mail already exists" });
     return;
@@ -53,14 +58,17 @@ router.route("/").post(async (req, res) => {
     return;
   }
 
+  // HASHING THE PASSWORD IF ALL THE CHECKS ARE PASSED
   const hashedPassword = await GenerateHash(dataProvided.password);
 
+  // STORING THE NEW USER IN DATABSE
   const result = await AddUser(
     dataProvided.name,
     dataProvided.email,
     hashedPassword
   );
 
+  // SENDING AN SUCCESS REPONSE TO THE FRONT END
   res.send(result);
 });
 

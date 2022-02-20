@@ -11,9 +11,10 @@ router.route("/").post(async (req, res) => {
   const friendsChannelId = req.body.friendsChannelId;
   const userId = req.body.userId;
 
+  // TO SEND A RESPONSE IF THE FRIENDS LIST IS EMPTY
   if (!friendsChannelId) {
     return res
-      .status(400)
+      .status(200)
       .send({ message: "Friends list is empty for the user", Access: false });
   }
 
@@ -21,7 +22,7 @@ router.route("/").post(async (req, res) => {
   for (let i = 0; i < friendsChannelId.length; i++) {
     friendsChannelId[i] = new ObjectId(friendsChannelId[i]);
   }
-  
+
   //   GETTING FRIENDS ID LIST
   const friendsList = await GetFriendsChannelById(friendsChannelId);
   const updatedFriendsList = friendsList.map((data) => data.users);

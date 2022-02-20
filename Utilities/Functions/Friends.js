@@ -31,7 +31,16 @@ function GetFriendsChannel(user, friend) {
 }
 
 // TO ADD FRIENDS EXPENSES
-function AddFriendsExpense(data, channelId, userId) {
+function AddFriendsExpense(
+  data,
+  channelId,
+  userId,
+  user,
+  friendId,
+  friend,
+  persnToRtnAmt,
+  persnToRtnAmtId
+) {
   return client
     .db("Portfolio-First-Project")
     .collection("friends-channel")
@@ -41,9 +50,17 @@ function AddFriendsExpense(data, channelId, userId) {
         $push: {
           expenses: {
             _id: ObjectId(),
-            category: data.category,
-            amount: data.amount,
-            paidBY: userId,
+            description: data.description,
+            totalAmount: data.totalAmount,
+            amount: [
+              { _id: ObjectId(userId), name: user.name, paid: user.paid },
+              { _id: ObjectId(friendId), name: friend.name, paid: friend.paid },
+            ],
+            persnToRtnAmt: {
+              _id: ObjectId(persnToRtnAmtId),
+              name: persnToRtnAmt.name,
+              amount: persnToRtnAmt.amount,
+            },
           },
         },
       }

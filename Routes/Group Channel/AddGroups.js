@@ -16,13 +16,15 @@ router
   .post(async (req, res) => {
     const dataProvided = req.body;
 
-    // VERIFYING DATABASE IF THE NAMES PROVIDED IN THE FRIEND LIST IS A EXISTING USER OR NOT
+    // VERIFYING DATABASE IF THE NAMES PROVIDED IN THE FRIENDS LIST IS A EXISTING USER OR NOT
     const members = await GetAllNames(dataProvided.friendsList);
     const membersArr = members.map((mem) => mem._id);
 
+    // TO GET THE LENGTH OF THE ARRAY OF BOTH FRIENDS LIST SENT FROM FRONT END AND THE DATABSE
     const NO_Friends = dataProvided.friendsList.length;
     const NO_FriendsFrmDB = membersArr.length;
 
+    // TO THROW AN EROR IF THE NUMBER OF FRIENDS FROM DATABASE AND FRONT END IS NOT EQUAL
     if (NO_Friends != NO_FriendsFrmDB) {
       const message = "Provided list of friends name is not found";
       return ErrorRes(res, message, false);
@@ -35,6 +37,7 @@ router
       NO_FriendsFrmDB
     );
 
+    // TO THROW AN ERROR IF THERE IS ALREADY A GROUP PRESENT WITH SAME NAME AND SAME LIST OF MEMBERS
     if (isGroupChannelExist) {
       const message = "Group already exists with provided members";
       return ErrorRes(res, message, false);
@@ -49,18 +52,18 @@ router
       Groups.insertedId
     );
 
-    //   GETTING TOKEN TO UPDATE IN THE FRONT END
+    // GETTING NEW TOKEN TO UPDATE IN THE FRONT END
     const Getuser = await GetName(dataProvided.friendsList[0]);
     const token = GenerateToken(Getuser);
 
-    console.log(token);
-
+    // SENDING AN SUCCESS RESPOND TO THE FRONT END
     res.send({
       message: "Group added successfully",
       Token: token,
       Access: true,
     });
   })
+  // TO DELETE ALL THE GROUPS CHANNEL
   .delete(async (req, res) => {
     client
       .db("Portfolio-First-Project")
@@ -72,6 +75,6 @@ router
       .collection("users")
       .updateMany({}, { $unset: { groups: 1 } });
 
-    return res.send("all groups deleted");
+    return res.send({ message: "all groups deleted" });
   });
 export const AddGroupRouter = router;
