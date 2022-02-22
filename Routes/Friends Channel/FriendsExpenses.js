@@ -60,7 +60,7 @@ router.route("/").post(async (req, res) => {
   );
 
   // SENDING A SUCCESS RESPOND
-  res.status(200).send({ addExpense });
+  res.status(200).send({ message: "Expense added succesfully", Access: true });
 });
 
 export const FriendsExpensesRouter = router;

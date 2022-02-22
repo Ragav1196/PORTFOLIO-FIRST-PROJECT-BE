@@ -10,6 +10,7 @@ import { AddGroupRouter } from "./Routes/Group Channel/AddGroups.js";
 import { GroupExpensesRouter } from "./Routes/Group Channel/GroupExpenses.js";
 import { GetFriendsRouter } from "./Routes/Friends Channel/GetFriends.js";
 import { GetGroupsRouter } from "./Routes/Group Channel/GetGroups.js";
+import { GetFriendsExpensesRouter } from "./Routes/Friends Channel/GetFriendsExpenses.js";
 
 dotenv.config();
 
@@ -29,17 +30,20 @@ app.use("/login", LoginRouter);
 // ADD FRIEND
 app.use("/add-friends", AddFriendRouter);
 
+// GET FRIENDS
+app.use("/get-friends", GetFriendsRouter);
+
 // ADD EXPENSE BETWEEN FRIENDS
-app.use("/add-friends-expenses", FriendsExpensesRouter);
+app.use("/add-friends-expenses/", FriendsExpensesRouter);
+
+// GET FRIENDS EXPENSES
+app.use("/get-friends-expenses", GetFriendsExpensesRouter);
 
 // ADD GROUPS
 app.use("/add-groups", AddGroupRouter);
 
 // ADD GROUPS EXPENSE
 app.use("/add-groups-expenses", GroupExpensesRouter);
-
-// GET FRIENDS
-app.use("/get-friends", GetFriendsRouter);
 
 // GET GROUPS
 app.use("/get-groups", GetGroupsRouter);

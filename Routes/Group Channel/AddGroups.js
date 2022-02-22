@@ -47,10 +47,7 @@ router
     const Groups = await AddGroups(membersArr, dataProvided.groupName);
 
     // ADDING GROUP ID TO EVERY MEMBERS OF THE GROUP
-    const addGrpIdToUser = await AddGroupIdToUser(
-      membersArr,
-      Groups.insertedId
-    );
+    await AddGroupIdToUser(membersArr, Groups.insertedId);
 
     // GETTING NEW TOKEN TO UPDATE IN THE FRONT END
     const Getuser = await GetName(dataProvided.friendsList[0]);

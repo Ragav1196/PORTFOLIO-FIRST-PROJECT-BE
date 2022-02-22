@@ -1,7 +1,5 @@
 // NEED TO CHECK AGAIN AND DO THE COMMENT
 
-
-
 import express from "express";
 import { ObjectId } from "mongodb";
 import { GetGroupName } from "../../Utilities/Functions/Groups.js";
@@ -13,7 +11,7 @@ router.route("/").post(async (req, res) => {
 
   if (!groupsId) {
     return res
-      .status(400)
+      .status(200)
       .send({ message: "Groups list is empty for the user", Access: false });
   }
 
