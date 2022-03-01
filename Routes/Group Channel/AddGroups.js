@@ -4,7 +4,7 @@ import { ErrorRes } from "../../Utilities/Errors.js";
 import {
   AddGroups,
   GetAllNames,
-  GetGroupChannel,
+  GetGroupChannelByName,
   AddGroupIdToUser,
 } from "../../Utilities/Functions/Groups.js";
 import { GenerateToken, GetName } from "../../Utilities/FUNCTIONS/Users.js";
@@ -31,7 +31,7 @@ router
     }
 
     // CHECKING IF THE GROUP IS ALREADY EXISTING WITH THE SAME NAME AND MEMBERS
-    const isGroupChannelExist = await GetGroupChannel(
+    const isGroupChannelExist = await GetGroupChannelByName(
       dataProvided.groupName,
       membersArr,
       NO_FriendsFrmDB

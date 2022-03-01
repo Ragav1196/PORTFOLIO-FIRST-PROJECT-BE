@@ -2,6 +2,7 @@
 
 import express from "express";
 import { ObjectId } from "mongodb";
+import { GetFriendsName } from "../../Utilities/Functions/Friends.js";
 import { GetGroupName } from "../../Utilities/Functions/Groups.js";
 
 const router = express.Router();
@@ -20,11 +21,16 @@ router.route("/").post(async (req, res) => {
     groupsId[i] = new ObjectId(groupsId[i]);
   }
 
-  const GroupName = await GetGroupName(groupsId);
+  // GETTING GROUP DETAILS FROM THE DATABASE
+  const Groups = await GetGroupName(groupsId);
 
-  const updatedGroupName = GroupName.map((data) => data.name);
+  // FILTERING OUT THE MEMBER ID FROM THE "Groups"
+  const membersId = Groups[0].members;
 
-  res.send({ GroupName: updatedGroupName, Access: true });
+  // GETTING MEMBER NAMES FROM THE DATABASE USING MEMBERS ID
+  const MembersLst = await GetFriendsName(membersId);
+
+  res.send({ groupsDetails: Groups, members: MembersLst, access: true });
 });
 
 export const GetGroupsRouter = router;

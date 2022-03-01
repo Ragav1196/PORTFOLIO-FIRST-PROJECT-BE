@@ -21,12 +21,23 @@ function GetAllNames(frndsList) {
     .toArray();
 }
 
-// TO GET THE GROUP CHANNEL
-function GetGroupChannel(name, members, arrLength) {
+// TO GET THE GROUP CHANNEL BY NAME
+function GetGroupChannelByName(name, members, arrLength) {
   return client
     .db("Portfolio-First-Project")
     .collection("groups-channel")
     .findOne({ name: name, members: { $size: arrLength, $all: members } });
+}
+
+// TO GET THE GROUP CHANNEL BY ID
+function GetGroupChannelById(id, membersIdArr) {
+  return client
+    .db("Portfolio-First-Project")
+    .collection("groups-channel")
+    .findOne({
+      _id: ObjectId(id),
+      members: { $all: membersIdArr },
+    });
 }
 
 // TO ADD GROUP ID TO EACH MEMBER OF THE GROUP
@@ -38,7 +49,7 @@ function AddGroupIdToUser(id, groupId) {
 }
 
 // TO ADD GROUP EXPENSES
-function addGrpExpense(data, groupId, membersFrmDB) {
+function addGrpExpense(data, groupId) {
   return client
     .db("Portfolio-First-Project")
     .collection("groups-channel")
@@ -48,30 +59,30 @@ function addGrpExpense(data, groupId, membersFrmDB) {
         $push: {
           expenses: {
             _id: ObjectId(),
-            category: data.category,
-            amount: data.amount,
-            paidBy: membersFrmDB[0]._id,
-            membersInvloved: membersFrmDB,
+            description: data.expenses.description,
+            totalAmount: data.expenses.totalAmount,
+            amount: [data.username, ...data.friendsName],
+            persnToRtnAmt: data.persnToRtnAmt,
           },
         },
       }
     );
 }
 
-// TO GROUP NAMES BY ID
+// TO GET GROUP NAMES BY ID
 function GetGroupName(GroupId) {
   return client
     .db("Portfolio-First-Project")
     .collection("groups-channel")
     .find({ _id: { $in: GroupId } })
-    .project({ name: 1 })
     .toArray();
 }
 
 export {
   AddGroups,
   GetAllNames,
-  GetGroupChannel,
+  GetGroupChannelByName,
+  GetGroupChannelById,
   AddGroupIdToUser,
   addGrpExpense,
   GetGroupName,
