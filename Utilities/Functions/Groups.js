@@ -30,13 +30,12 @@ function GetGroupChannelByName(name, members, arrLength) {
 }
 
 // TO GET THE GROUP CHANNEL BY ID
-function GetGroupChannelById(id, membersIdArr) {
+function GetGroupChannelById(id) {
   return client
     .db("Portfolio-First-Project")
     .collection("groups-channel")
     .findOne({
       _id: ObjectId(id),
-      members: { $all: membersIdArr },
     });
 }
 
@@ -78,6 +77,18 @@ function GetGroupName(GroupId) {
     .toArray();
 }
 
+// TO GET MEMBERS LIST
+function GetMembersName(id) {
+  return client
+    .db("Portfolio-First-Project")
+    .collection("users")
+    .find({
+      _id: { $in: id },
+    })
+    .project({ name: 1 })
+    .toArray();
+}
+
 export {
   AddGroups,
   GetAllNames,
@@ -86,4 +97,5 @@ export {
   AddGroupIdToUser,
   addGrpExpense,
   GetGroupName,
+  GetMembersName,
 };

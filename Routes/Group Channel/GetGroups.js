@@ -24,13 +24,7 @@ router.route("/").post(async (req, res) => {
   // GETTING GROUP DETAILS FROM THE DATABASE
   const Groups = await GetGroupName(groupsId);
 
-  // FILTERING OUT THE MEMBER ID FROM THE "Groups"
-  const membersId = Groups[0].members;
-
-  // GETTING MEMBER NAMES FROM THE DATABASE USING MEMBERS ID
-  const MembersLst = await GetFriendsName(membersId);
-
-  res.send({ groupsDetails: Groups, members: MembersLst, access: true });
+  res.send({ groupsDetails: Groups, access: true });
 });
 
 export const GetGroupsRouter = router;

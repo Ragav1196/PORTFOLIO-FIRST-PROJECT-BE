@@ -27,11 +27,11 @@ router.route("/:group_id").post(async (req, res) => {
   }
 
   const membersIdArr = membersIdFrmDB.map((data) => data._id); //CREATING AN ARRAY OF MEMBERS ID
-  const isGroupChannelExist = await GetGroupChannelById(group_id, membersIdArr);
+  const isGroupChannelExist = await GetGroupChannelById(group_id);
 
   // THROWING AN ERROR IF THE GROUP CHANNEL DOESN'T EXIST IN THE DB
   if (!isGroupChannelExist) {
-    const message = "Group doesn't exists between provided members";
+    const message = "Group doesn't exists by that ID";
     return ErrorRes(res, message, false);
   }
 
