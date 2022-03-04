@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { MongoClient } from "mongodb";
-// import { LoginRouter } from "./routes/Login.js";
+import { LoginRouter } from "./routes/Login.js";
 // import { SignUpRouter } from "./routes/SignUp.js";
 // import { AddFriendRouter } from "./Routes/Friends Channel/AddFriend.js";
 // import { FriendsExpensesRouter } from "./Routes/Friends Channel/FriendsExpenses.js";
@@ -25,8 +25,8 @@ app.use(express.json());
 // // SIGN UP
 // app.use("/sign-up", SignUpRouter);
 
-// // LOGIN
-// app.use("/login", LoginRouter);
+// LOGIN
+app.use("/login", LoginRouter);
 
 // // ADD FRIEND
 // app.use("/add-friends", AddFriendRouter);
