@@ -1,5 +1,5 @@
 import express from "express";
-import { GetEmail, GenerateToken } from "../Utilities/FUNCTIONS/Users.js";
+import { GetEmail, GenerateToken } from "../Utilities/Functions/Users.js";
 import bcrypt from "bcrypt";
 
 const router = express.Router();
