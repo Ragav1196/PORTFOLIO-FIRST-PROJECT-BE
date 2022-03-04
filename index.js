@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { MongoClient } from "mongodb";
-import { LoginRouter } from "./routes/Login.js";
+import { loginRouter } from "/routes/Login.js";
 // import { SignUpRouter } from "./routes/SignUp.js";
 // import { AddFriendRouter } from "./Routes/Friends Channel/AddFriend.js";
 // import { FriendsExpensesRouter } from "./Routes/Friends Channel/FriendsExpenses.js";
@@ -66,7 +66,7 @@ app.get("/", (req, res) => {
 });
 
 // LOGIN
-app.use("/", LoginRouter);
+app.use("/", loginRouter);
 
 app.listen(PORT, () => {
   console.log("Server Started in", PORT);

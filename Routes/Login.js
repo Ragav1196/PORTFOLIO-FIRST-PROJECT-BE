@@ -41,4 +41,4 @@ router.route("/login").post(async (req, res) => {
   }
 });
 
-export const LoginRouter = router;
+export const loginRouter = router;
