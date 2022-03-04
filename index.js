@@ -25,9 +25,6 @@ app.use(express.json());
 // // SIGN UP
 // app.use("/sign-up", SignUpRouter);
 
-// LOGIN
-app.use("/", LoginRouter);
-
 // // ADD FRIEND
 // app.use("/add-friends", AddFriendRouter);
 
@@ -61,6 +58,9 @@ async function CreateConnection() {
 }
 
 export const client = await CreateConnection();
+
+// LOGIN
+app.use("/", LoginRouter);
 
 app.get("/", (req, res) => {
   res
