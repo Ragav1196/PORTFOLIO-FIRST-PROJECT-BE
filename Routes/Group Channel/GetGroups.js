@@ -24,7 +24,7 @@ router.route("/").post(async (req, res) => {
   // GETTING GROUP DETAILS FROM THE DATABASE
   const Groups = await GetGroupName(groupsId);
 
-  res.send({ groupsDetails: Groups, access: true });
+  res.send({ groupsDetails: Groups, Access: true });
 });
 
 export const GetGroupsRouter = router;
