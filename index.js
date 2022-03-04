@@ -59,14 +59,14 @@ async function CreateConnection() {
 
 export const client = await CreateConnection();
 
-// LOGIN
-app.use("/", LoginRouter);
-
 app.get("/", (req, res) => {
   res
     .status(200)
     .send(`<h1 style="text-align: center" >WELCOME TO SPLITWISE</h1>`);
 });
+
+// LOGIN
+app.use("/", LoginRouter);
 
 app.listen(PORT, () => {
   console.log("Server Started in", PORT);
