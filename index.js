@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { MongoClient } from "mongodb";
-import { LoginRouter } from "./Routes/login.js";
+import { LoginRouter } from "./Routes/Login.js";
 // import { SignUpRouter } from "./routes/SignUp.js";
 // import { AddFriendRouter } from "./Routes/Friends Channel/AddFriend.js";
 // import { FriendsExpensesRouter } from "./Routes/Friends Channel/FriendsExpenses.js";
@@ -19,14 +19,8 @@ const app = express();
 const PORT = process.env.PORT;
 const MONGO_URL = process.env.MONGO_URL;
 
-app.use(cors());
-app.use(express.json());
-
 // // SIGN UP
 // app.use("/sign-up", SignUpRouter);
-
-// LOGIN
-app.use("/", LoginRouter);
 
 // // ADD FRIEND
 // app.use("/add-friends", AddFriendRouter);
@@ -62,11 +56,17 @@ async function CreateConnection() {
 
 export const client = await CreateConnection();
 
-app.get("/", (req, res) => {
-  res
-    .status(200)
-    .send(`<h1 style="text-align: center" >WELCOME TO SPLITWISE</h1>`);
-});
+app.use(cors());
+app.use(express.json());
+
+// LOGIN
+app.use("/", LoginRouter);
+
+// app.get("/", (req, res) => {
+//   res
+//     .status(200)
+//     .send(`<h1 style="text-align: center" >WELCOME TO SPLITWISE</h1>`);
+// });
 
 app.listen(PORT, () => {
   console.log("Server Started in", PORT);
