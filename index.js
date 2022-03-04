@@ -62,11 +62,11 @@ async function CreateConnection() {
 
 export const client = await CreateConnection();
 
-// app.get("/", (req, res) => {
-//   res
-//     .status(200)
-//     .send(`<h1 style="text-align: center" >WELCOME TO SPLITWISE</h1>`);
-// });
+app.get("/", (req, res) => {
+  res
+    .status(200)
+    .send(`<h1 style="text-align: center" >WELCOME TO SPLITWISE</h1>`);
+});
 
 app.listen(PORT, () => {
   console.log("Server Started in", PORT);
