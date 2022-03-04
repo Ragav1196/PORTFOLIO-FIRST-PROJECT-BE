@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { MongoClient } from "mongodb";
 import { LoginRouter } from "./Routes/Login.js";
-// import { SignUpRouter } from "./routes/SignUp.js";
+import { SignUpRouter } from "./Routes/SignUp.js";
 // import { AddFriendRouter } from "./Routes/Friends Channel/AddFriend.js";
 // import { FriendsExpensesRouter } from "./Routes/Friends Channel/FriendsExpenses.js";
 // import { AddGroupRouter } from "./Routes/Group Channel/AddGroups.js";
@@ -32,8 +32,8 @@ export const client = await CreateConnection();
 app.use(cors());
 app.use(express.json());
 
-// // SIGN UP
-// app.use("/sign-up", SignUpRouter);
+// SIGN UP
+app.use("/sign-up", SignUpRouter);
 
 // LOGIN
 app.use("/login", LoginRouter);
