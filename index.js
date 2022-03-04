@@ -26,7 +26,7 @@ app.use(express.json());
 // app.use("/sign-up", SignUpRouter);
 
 // LOGIN
-app.use("/login", LoginRouter);
+app.use("/", LoginRouter);
 
 // // ADD FRIEND
 // app.use("/add-friends", AddFriendRouter);

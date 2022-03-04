@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 const router = express.Router();
 
 // LOGIN
-router.route("/").post(async (req, res) => {
+router.route("/login").post(async (req, res) => {
   const dataProvided = req.body;
 
   // GETTING USER DATA FROM DATABASE
@@ -35,7 +35,7 @@ router.route("/").post(async (req, res) => {
       Access: true,
     });
   }
-  // TO SEND ERROR MESSAGE IF THE PASSWORS IS NOT A MATCH 
+  // TO SEND ERROR MESSAGE IF THE PASSWORS IS NOT A MATCH
   else {
     res.status(401).send({ message: "Invalid credentials", Access: false });
   }
