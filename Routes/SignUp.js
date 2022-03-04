@@ -4,7 +4,7 @@ import {
   GetEmail,
   GenerateHash,
   AddUser,
-} from "../Utilities/FUNCTIONS/Users.js";
+} from "../Utilities/Functions/Users.js";
 
 const router = express.Router();
 

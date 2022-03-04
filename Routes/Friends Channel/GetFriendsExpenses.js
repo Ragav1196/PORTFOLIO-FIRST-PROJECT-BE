@@ -1,7 +1,7 @@
 import express from "express";
 import { ErrorRes } from "../../Utilities/Errors.js";
 import { GetFriendsChannel } from "../../Utilities/Functions/Friends.js";
-import { GetId } from "../../Utilities/FUNCTIONS/Users.js";
+import { GetId } from "../../Utilities/Functions/Users.js";
 
 const router = express.Router();
 

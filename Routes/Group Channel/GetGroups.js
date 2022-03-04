@@ -2,7 +2,6 @@
 
 import express from "express";
 import { ObjectId } from "mongodb";
-import { GetFriendsName } from "../../Utilities/Functions/Friends.js";
 import { GetGroupName } from "../../Utilities/Functions/Groups.js";
 
 const router = express.Router();

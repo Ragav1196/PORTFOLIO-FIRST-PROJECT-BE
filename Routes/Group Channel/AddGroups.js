@@ -7,7 +7,7 @@ import {
   GetGroupChannelByName,
   AddGroupIdToUser,
 } from "../../Utilities/Functions/Groups.js";
-import { GenerateToken, GetName } from "../../Utilities/FUNCTIONS/Users.js";
+import { GenerateToken, GetName } from "../../Utilities/Functions/Users.js";
 
 const router = express.Router();
 
