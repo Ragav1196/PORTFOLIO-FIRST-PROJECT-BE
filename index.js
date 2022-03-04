@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { MongoClient } from "mongodb";
-import { loginRouter } from "/routes/Login.js";
+import { LoginRouter } from "./Routes/login.js";
 // import { SignUpRouter } from "./routes/SignUp.js";
 // import { AddFriendRouter } from "./Routes/Friends Channel/AddFriend.js";
 // import { FriendsExpensesRouter } from "./Routes/Friends Channel/FriendsExpenses.js";
@@ -24,6 +24,9 @@ app.use(express.json());
 
 // // SIGN UP
 // app.use("/sign-up", SignUpRouter);
+
+// LOGIN
+app.use("/", LoginRouter);
 
 // // ADD FRIEND
 // app.use("/add-friends", AddFriendRouter);
@@ -64,9 +67,6 @@ app.get("/", (req, res) => {
     .status(200)
     .send(`<h1 style="text-align: center" >WELCOME TO SPLITWISE</h1>`);
 });
-
-// LOGIN
-app.use("/", loginRouter);
 
 app.listen(PORT, () => {
   console.log("Server Started in", PORT);

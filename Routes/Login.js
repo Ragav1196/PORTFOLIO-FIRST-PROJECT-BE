@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 const router = express.Router();
 
 // LOGIN
-router.route("/login").post(async (req, res) => {
+router.route("/login").get(async (req, res) => {
   const dataProvided = req.body;
 
   // GETTING USER DATA FROM DATABASE
@@ -41,4 +41,4 @@ router.route("/login").post(async (req, res) => {
   }
 });
 
-export const loginRouter = router;
+export const LoginRouter = router;
