@@ -16,7 +16,7 @@ import { GetGroupExpensesRouter } from "./Routes/Group Channel/GetGroupExpenses.
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT;
 const MONGO_URL = process.env.MONGO_URL;
 
 app.use(cors());
@@ -62,11 +62,11 @@ async function CreateConnection() {
 
 export const client = await CreateConnection();
 
-app.get("/", (req, res) => {
-  res
-    .status(200)
-    .send(`<h1 style="text-align: center" >WELCOME TO SPLITWISE</h1>`);
-});
+// app.get("/", (req, res) => {
+//   res
+//     .status(200)
+//     .send(`<h1 style="text-align: center" >WELCOME TO SPLITWISE</h1>`);
+// });
 
 app.listen(PORT, () => {
   console.log("Server Started in", PORT);
