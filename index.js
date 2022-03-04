@@ -19,6 +19,9 @@ const app = express();
 const PORT = process.env.PORT;
 const MONGO_URL = process.env.MONGO_URL;
 
+app.use(cors());
+app.use(express.json());
+
 // CREATING MONGO CONNECTION
 async function CreateConnection() {
   const client = new MongoClient(MONGO_URL);
@@ -28,9 +31,6 @@ async function CreateConnection() {
 }
 
 export const client = await CreateConnection();
-
-app.use(cors());
-app.use(express.json());
 
 // SIGN UP
 app.use("/sign-up", SignUpRouter);
