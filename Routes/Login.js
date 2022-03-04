@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 const router = express.Router();
 
 // LOGIN
-router.route("/login").post(async (req, res) => {
+router.route("/").post(async (req, res) => {
   const dataProvided = req.body;
 
   // GETTING USER DATA FROM DATABASE

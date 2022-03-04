@@ -60,7 +60,7 @@ app.use(cors());
 app.use(express.json());
 
 // LOGIN
-app.use("/", LoginRouter);
+app.use("/login", LoginRouter);
 
 // app.get("/", (req, res) => {
 //   res
