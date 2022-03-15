@@ -2,11 +2,12 @@
 
 import express from "express";
 import { ObjectId } from "mongodb";
+import { Auth } from "../../Middleware/Auth.js";
 import { GetGroupName } from "../../Utilities/Functions/Groups.js";
 
 const router = express.Router();
 
-router.route("/").post(async (req, res) => {
+router.route("/").post(Auth, async (req, res) => {
   const groupsId = req.body.GroupsId;
 
   if (!groupsId) {

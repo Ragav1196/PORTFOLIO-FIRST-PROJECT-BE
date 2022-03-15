@@ -1,5 +1,6 @@
 import express from "express";
 import { ObjectId } from "mongodb";
+import { Auth } from "../../Middleware/Auth.js";
 import {
   GetFriendsName,
   GetFriendsChannelById,
@@ -7,7 +8,7 @@ import {
 
 const router = express.Router();
 
-router.route("/").post(async (req, res) => {
+router.route("/").post(Auth, async (req, res) => {
   const friendsChannelId = req.body.friendsChannelId;
   const userId = req.body.userId;
 

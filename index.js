@@ -62,11 +62,11 @@ app.use("/get-groups", GetGroupsRouter);
 // GET GROUPS EXPENSES
 app.use("/get-groups-expenses", GetGroupExpensesRouter);
 
-// app.get("/", (req, res) => {
-//   res
-//     .status(200)
-//     .send(`<h1 style="text-align: center" >WELCOME TO SPLITWISE</h1>`);
-// });
+app.get("/", (req, res) => {
+  res
+    .status(200)
+    .send(`<h1 style="text-align: center" >WELCOME TO SPLITWISE</h1>`);
+});
 
 app.listen(PORT, () => {
   console.log("Server Started in", PORT);
