@@ -2,6 +2,7 @@ import { client } from "../../index.js";
 import bcrypt from "bcrypt";
 import { ObjectId } from "mongodb";
 import jwt from "jsonwebtoken";
+import { transporter } from "../../Packages Initializing/SendEmail.js";
 
 // TO GET USER FROM DATABASE BASED ON THE NAME:
 function GetName(name) {
@@ -50,4 +51,37 @@ function AddUser(name, email, hashedPassword) {
     .insertOne({ name, email, password: hashedPassword });
 }
 
-export { GetName, GetEmail, GetId, GenerateHash, GenerateToken, AddUser };
+// TO UPDATE THE USER WITH THE TEMPORARY TOKEN AND ITS EXPIRY TIME
+function ResetPwdLink(token, expireTime, email) {
+  return client
+    .db("Portfolio-First-Project")
+    .collection("users")
+    .updateOne(
+      { email: email },
+      { $set: { token: token, expireTime: expireTime } }
+    );
+}
+
+// TO SEND AN EMAIL WITH A LINK FOR PASSWORD RESET
+function SendMail(email, subject, content) {
+  transporter
+    .sendMail({
+      to: email,
+      from: "ragavofficial01@outlook.com",
+      subject: subject,
+      html: content,
+    })
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
+}
+
+export {
+  GetName,
+  GetEmail,
+  GetId,
+  GenerateHash,
+  GenerateToken,
+  AddUser,
+  ResetPwdLink,
+  SendMail,
+};
