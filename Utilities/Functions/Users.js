@@ -75,6 +75,35 @@ function SendMail(email, subject, content) {
     .catch((err) => console.log(err));
 }
 
+// TO FIND THE USER USING THE TEMPORARY TOKEN
+function FindUserWithTempToken(token) {
+  return client
+    .db("Portfolio-First-Project")
+    .collection("users")
+    .findOne({
+      token: token,
+      expireTime: { $gt: new Date().toString() },
+    });
+}
+
+// TO UPDATE THE NEW PASSWORD IN THE DATABASE
+function UpdatePassword(hashedPassword, token) {
+  return client
+    .db("Portfolio-First-Project")
+    .collection("users")
+    .updateOne(
+      {
+        token: token,
+      },
+      {
+        $set: {
+          password: hashedPassword,
+        },
+        $unset: { token: 1, expireTime: 1 },
+      }
+    );
+}
+
 export {
   GetName,
   GetEmail,
@@ -84,4 +113,6 @@ export {
   AddUser,
   ResetPwdLink,
   SendMail,
+  FindUserWithTempToken,
+  UpdatePassword,
 };

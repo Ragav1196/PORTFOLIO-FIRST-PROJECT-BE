@@ -13,6 +13,7 @@ import { GetGroupsRouter } from "./Routes/Group Channel/GetGroups.js";
 import { GetFriendsExpensesRouter } from "./Routes/Friends Channel/GetFriendsExpenses.js";
 import { GetGroupExpensesRouter } from "./Routes/Group Channel/GetGroupExpenses.js";
 import { ForgotPasswordRouter } from "./Routes/ForgotPassword.js";
+import { ResetPasswordRouter } from "./Routes/ResetPassword.js";
 
 dotenv.config();
 
@@ -65,6 +66,9 @@ app.use("/get-groups-expenses", GetGroupExpensesRouter);
 
 // TO SEND MAIL TO THE USER MAIL ADDRESS FOR PASSWORD RESET
 app.use("/forgot-password", ForgotPasswordRouter);
+
+// TO RESET THE PASSWORD USING THE LINK SENT THROUGH MAIL
+app.use("/reset-password", ResetPasswordRouter);
 
 app.get("/", (req, res) => {
   res

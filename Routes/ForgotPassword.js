@@ -35,7 +35,7 @@ router.route("/").post((req, res) => {
     // TO SEND AN EMAIL WITH A LINK FOR PASSWORD RESET
     const subject = "Reset Password";
     const content = ` <h1>You requested for a password change</h1>
-    <h3>Click on this <a href="http://localhost:3000/new-password/${token}">link</a> to reset your password</h3>
+    <h3>Click on this <a href="http://localhost:3000/reset-password/${token}">link</a> to reset your password</h3>
     `;
 
     SendMail(emailFrmDB.email, subject, content);
